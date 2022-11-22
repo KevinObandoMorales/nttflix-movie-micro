@@ -1,5 +1,8 @@
 package com.nttflix.movie.micro.controller;
 
-public class MovieController {
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class MovieController {
+	
 }
