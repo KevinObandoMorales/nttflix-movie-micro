@@ -9,4 +9,5 @@ public class ApplicationConfig {
 	
 	private final Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 	
+	
 }

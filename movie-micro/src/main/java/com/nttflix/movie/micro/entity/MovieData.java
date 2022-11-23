@@ -1,7 +1,15 @@
 package com.nttflix.movie.micro.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="MOVIEDATA")
+
 public class MovieData {
 	
+	@Id
 	private Long id;
 	private String name;
 	private String status;
