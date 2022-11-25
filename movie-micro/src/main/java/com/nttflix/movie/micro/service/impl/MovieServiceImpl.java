@@ -28,14 +28,13 @@ public class MovieServiceImpl implements MovieService{
 
 	@Override
 	public MovieData updateMovie(MovieData movie) {
-		// TODO Auto-generated method stub
-		return null;
+		return movieRepository.save(movie);
 	}
 
 	@Override
-	public void deleteMovie(String nombre) {
-		// TODO Auto-generated method stub
-		
+	public void deleteMovie(Long id) {		
+		movieRepository.deleteById(id);	
+		// TODO Auto-generated method stub	
 	}
 
 	@Override

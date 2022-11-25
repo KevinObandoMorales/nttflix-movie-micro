@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nttflix.movie.micro.entity.MovieData;
+import com.nttflix.movie.micro.entity.RequestMovie;
+import com.nttflix.movie.micro.entity.ResponseMovie;
 import com.nttflix.movie.micro.service.MovieService;
 
 @RestController
@@ -30,31 +32,50 @@ public class MovieController {
 		return new ResponseEntity<>(listMovies, HttpStatus.OK);
    }
     
-    @GetMapping("/api/movies/{number}")
-    public ResponseEntity<MovieData> getMovie(@PathVariable("number") long number){
-    	Optional<MovieData> movieData = movieService.getMovieById(number);
+    @GetMapping("/api/movies/number")
+    public ResponseMovie getMovie(@RequestBody RequestMovie requestScreen){
+    	Long id = requestScreen.getMovieData().getId();
+    	Optional<MovieData> movieData = movieService.getMovieById(id);
+    	String msg = "Not found";
         if (movieData.isPresent()) {
-        	return new ResponseEntity<>(movieData.get(), HttpStatus.OK);
-         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        	msg = "Found";
+        	return new ResponseMovie(msg, movieData.get());
+        }
+        return new ResponseMovie(msg, null);
     }
     
     
     @PostMapping("/api/movies")
-    public ResponseEntity<MovieData> addMovies(@RequestBody MovieData movieData){
-    	MovieData movieDataNew = movieService.createMovie(movieData);
-    	return new ResponseEntity<>(movieDataNew, HttpStatus.OK);
+    public ResponseMovie addMovies(@RequestBody RequestMovie requestScreen){
+    	
+    	MovieData movieDataNew = movieService.createMovie(requestScreen.getMovieData());
+    	return new ResponseMovie("Se ha añadido correctamente", movieDataNew);
    }
     
     
     @DeleteMapping("/api/movies")
-    public ResponseEntity<MovieData> deleteMovies(){
-        return null;
+    public ResponseMovie deleteMovies(@RequestBody RequestMovie requestScreen){
+    	
+    	Long id = requestScreen.getMovieData().getId();
+    	Optional<MovieData> movieData = movieService.getMovieById(id);
+    	String msg = "Not found";
+        if (movieData.isPresent()) {
+        	msg = "Movie deleted";
+        	movieService.deleteMovie(id);
+        	return new ResponseMovie(msg, movieData.get());
+        }
+        return new ResponseMovie(msg, null);
 
    }
     
     @PutMapping("/api/movies")
-    public ResponseEntity<MovieData> editMovies(){
-        return null;
+    public ResponseMovie editMovies(@RequestBody RequestMovie requestScreen){
+    	Long id = requestScreen.getMovieData().getId();
+    	Optional<MovieData> movieData = movieService.getMovieById(id);
+    	if (movieData.isPresent()) {
+    		MovieData movieUpdated = movieService.updateMovie(requestScreen.getMovieData());
+    		return new ResponseMovie("Movie updated", movieUpdated);
+    	}
+    	return new ResponseMovie("Movie not found", null);
    }
 }

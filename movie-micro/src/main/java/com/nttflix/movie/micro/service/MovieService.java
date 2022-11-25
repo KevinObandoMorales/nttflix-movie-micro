@@ -14,7 +14,7 @@ public interface MovieService {
 
 	public MovieData updateMovie(MovieData movie);
 
-	public void deleteMovie(String nombre);
+	public void deleteMovie(Long nombre);
 
 	public List<MovieData> getAllMovies();
 }
