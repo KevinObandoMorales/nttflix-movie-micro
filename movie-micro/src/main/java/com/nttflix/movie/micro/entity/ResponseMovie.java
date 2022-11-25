@@ -4,19 +4,20 @@ import java.util.Optional;
 
 public class ResponseMovie {
 	private String message;
-	private MovieData movieData;
+	private Object movieData;
+	
 	public ResponseMovie() {
 		super();
 	}
 	
 	
-	public ResponseMovie(MovieData movieData) {
+	public ResponseMovie(Object movieData) {
 		super();
 		this.movieData = movieData;
 	}
 
 
-	public ResponseMovie(String message, MovieData movieData) {
+	public ResponseMovie(String message, Object movieData) {
 		super();
 		this.message = message;
 		this.movieData = movieData;
@@ -28,10 +29,10 @@ public class ResponseMovie {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public MovieData getMovieData() {
+	public Object getMovieData() {
 		return movieData;
 	}
-	public void setMovieData(MovieData movieData) {
+	public void setMovieData(Object movieData) {
 		this.movieData = movieData;
 	}
 	

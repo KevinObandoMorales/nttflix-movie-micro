@@ -42,4 +42,9 @@ public class MovieServiceImpl implements MovieService{
 		return movieRepository.findAll();
 	}
 	
+	@Override
+	public List<MovieData> getMoviesByMAC(String mac){
+		return movieRepository.getMoviesMAC(mac);
+	}
+	
 }

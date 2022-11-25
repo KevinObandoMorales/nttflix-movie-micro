@@ -17,4 +17,6 @@ public interface MovieService {
 	public void deleteMovie(Long nombre);
 
 	public List<MovieData> getAllMovies();
+
+	public List<MovieData> getMoviesByMAC(String mac);
 }
