@@ -10,5 +10,6 @@ import com.nttflix.movie.micro.entity.MovieData;
 @Repository
 public interface MovieRepository extends JpaRepository<MovieData, Long> {
 
-	public List<MovieData> getMoviesMAC(String mac);
+	List<MovieData> findByMac(String mac);
+	
 }

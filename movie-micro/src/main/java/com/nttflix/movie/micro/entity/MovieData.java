@@ -6,7 +6,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="MOVIEDATA")
-
 public class MovieData {
 	
 	@Id

@@ -5,11 +5,9 @@ public class RequestMovie {
 	private MovieData movieData;
 
 	public RequestMovie() {
-		super();
 	}
 
 	public RequestMovie(MovieData movieData) {
-		super();
 		this.movieData = movieData;
 	}
 

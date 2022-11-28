@@ -1,7 +1,5 @@
 package com.nttflix.movie.micro.entity;
 
-import java.util.Optional;
-
 public class ResponseMovie {
 	private String message;
 	private Object movieData;
