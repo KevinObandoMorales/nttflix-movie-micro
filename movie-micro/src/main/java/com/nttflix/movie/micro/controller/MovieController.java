@@ -27,7 +27,6 @@ public class MovieController {
     public ResponseMovie getMovies(){	
 		List<MovieData> listMovies = movieService.getAllMovies();
 		String msg = "Movies found";
-		
 		return new ResponseMovie(msg, listMovies);
    }
     
